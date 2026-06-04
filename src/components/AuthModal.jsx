@@ -8,35 +8,59 @@ export default function AuthModal({ isOpen, initialTab, onClose, onLoginSuccess 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
   
   useEffect(() => {
     if (isOpen) {
       setActiveTab(initialTab || 'login');
-      // Clear forms
+      // Clear forms and error states
       setEmail('');
       setPassword('');
       setName('');
+      setError('');
+      setLoading(false);
     }
   }, [isOpen, initialTab]);
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (activeTab === 'login') {
-      // Simulate login
-      onLoginSuccess({
-        name: email.split('@')[0] || 'User',
-        email: email
+    setError('');
+    setLoading(true);
+
+    try {
+      const endpoint = activeTab === 'login' ? '/api/auth/login' : '/api/auth/signup';
+      const payload = activeTab === 'login' 
+        ? { email, password }
+        : { name, email, password };
+
+      const response = await fetch(`http://localhost:5000${endpoint}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
       });
-    } else {
-      // Simulate signup
-      onLoginSuccess({
-        name: name || 'New User',
-        email: email
-      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Something went wrong');
+      }
+
+      if (data.token) {
+        localStorage.setItem('token', data.token);
+      }
+
+      onLoginSuccess(data.user);
+      onClose();
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
     }
-    onClose();
   };
 
   return (
@@ -49,19 +73,40 @@ export default function AuthModal({ isOpen, initialTab, onClose, onLoginSuccess 
         <div className="modal-tabs">
           <div
             className={`modal-tab ${activeTab === 'login' ? 'active' : ''}`}
-            onClick={() => setActiveTab('login')}
+            onClick={() => {
+              setActiveTab('login');
+              setError('');
+            }}
           >
             {t('login')}
           </div>
           <div
             className={`modal-tab ${activeTab === 'signup' ? 'active' : ''}`}
-            onClick={() => setActiveTab('signup')}
+            onClick={() => {
+              setActiveTab('signup');
+              setError('');
+            }}
           >
             {t('signUp')}
           </div>
         </div>
 
         <div className="modal-body">
+          {error && (
+            <div style={{
+              color: 'var(--accent-red, #ff453a)',
+              backgroundColor: 'rgba(255, 69, 58, 0.1)',
+              border: '1px solid rgba(255, 69, 58, 0.2)',
+              padding: '0.75rem',
+              borderRadius: '6px',
+              marginBottom: '1rem',
+              fontSize: '0.875rem',
+              textAlign: 'center'
+            }}>
+              {error}
+            </div>
+          )}
+
           <form className="modal-form" onSubmit={handleSubmit}>
             {activeTab === 'signup' && (
               <div className="form-group">
@@ -113,8 +158,8 @@ export default function AuthModal({ isOpen, initialTab, onClose, onLoginSuccess 
               </div>
             </div>
 
-            <button type="submit" className="form-submit-btn">
-              {activeTab === 'login' ? t('auth.loginBtn') : t('auth.signUpBtn')}
+            <button type="submit" className="form-submit-btn" disabled={loading}>
+              {loading ? 'Processing...' : (activeTab === 'login' ? t('auth.loginBtn') : t('auth.signUpBtn'))}
             </button>
           </form>
 
