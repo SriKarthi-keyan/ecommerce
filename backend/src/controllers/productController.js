@@ -1,5 +1,5 @@
 // Mock database of products
-const PRODUCTS = [
+export const PRODUCTS = [
   {
     id: 'prod_01',
     name: 'Nova Wireless ANC Headphones',
