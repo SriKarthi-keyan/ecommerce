@@ -121,7 +121,7 @@ export const sampleProducts = [
   {
     id: 12,
     category: 'beauty',
-    name: 'Shopifyy Crimson Matte Lipstick',
+    name: 'Nexacart Crimson Matte Lipstick',
     price: 24.99,
     rating: 4.6,
     reviewsCount: 52,
@@ -140,8 +140,9 @@ export default function ProductList({
   wishlist,
   onToggleWishlist,
   onAddToCart,
+  onDecreaseCart,
   onQuickView,
-  addedItems
+  cart = {}
 }) {
   const { t } = useLanguage();
   const [layoutMode, setLayoutMode] = useState('grid');
@@ -238,7 +239,8 @@ export default function ProductList({
         <div className={`products-grid ${layoutMode === 'list' ? 'list-view' : ''}`}>
           {sortedProducts.map((product) => {
             const isWishlisted = wishlist.includes(product.id);
-            const isAdded = addedItems.includes(product.id);
+            const qty = cart[product.id] || 0;
+            const isAdded = qty > 0;
 
             return (
               <div key={product.id} className="product-card">
@@ -292,13 +294,33 @@ export default function ProductList({
                         </span>
                       )}
                     </div>
-                    <button
-                      className={`add-cart-btn ${isAdded ? 'added' : ''}`}
-                      onClick={() => onAddToCart(product.id)}
-                      aria-label="Add to cart"
-                    >
-                      <Plus size={16} />
-                    </button>
+                    {isAdded ? (
+                      <div className="quantity-selector">
+                        <button
+                          className="qty-btn decrease"
+                          onClick={() => onDecreaseCart(product.id)}
+                          aria-label="Decrease quantity"
+                        >
+                          -
+                        </button>
+                        <span className="qty-val">{qty}</span>
+                        <button
+                          className="qty-btn increase"
+                          onClick={() => onAddToCart(product.id)}
+                          aria-label="Increase quantity"
+                        >
+                          +
+                        </button>
+                      </div>
+                    ) : (
+                      <button
+                        className="add-cart-btn"
+                        onClick={() => onAddToCart(product.id)}
+                        aria-label="Add to cart"
+                      >
+                        <Plus size={16} />
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>

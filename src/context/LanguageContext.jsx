@@ -4,7 +4,7 @@ const LanguageContext = createContext();
 
 const translations = {
   en: {
-    appName: 'shopifyy',
+    appName: 'nexacart',
     searchPlaceholder: 'Search products, brands and categories...',
     selectLocation: 'Deliver to',
     defaultLocation: 'Select Location',
@@ -50,7 +50,7 @@ const translations = {
       cookies: 'Cookie Preference',
       contact: 'Contact Support',
       language: 'Language',
-      copyright: '© 2026 shopifyy. All rights reserved. Made for visual excellence.'
+      copyright: '© 2026 nexacart. All rights reserved. Made for visual excellence.'
     },
     auth: {
       loginTitle: 'Welcome Back',
@@ -75,7 +75,7 @@ const translations = {
     }
   },
   es: {
-    appName: 'shopifyy',
+    appName: 'nexacart',
     searchPlaceholder: 'Buscar productos, marcas y categorías...',
     selectLocation: 'Entregar a',
     defaultLocation: 'Seleccionar ubicación',
@@ -121,7 +121,7 @@ const translations = {
       cookies: 'Preferencia de cookies',
       contact: 'Soporte técnico',
       language: 'Idioma',
-      copyright: '© 2026 shopifyy. Todos los derechos reservados. Diseñado para la excelencia visual.'
+      copyright: '© 2026 nexacart. Todos los derechos reservados. Diseñado para la excelencia visual.'
     },
     auth: {
       loginTitle: 'Bienvenido de nuevo',
@@ -146,7 +146,7 @@ const translations = {
     }
   },
   hi: {
-    appName: 'shopifyy',
+    appName: 'nexacart',
     searchPlaceholder: 'उत्पाद, ब्रांड और श्रेणियां खोजें...',
     selectLocation: 'डिलिवरी करें',
     defaultLocation: 'स्थान चुनें',
@@ -192,7 +192,7 @@ const translations = {
       cookies: 'कुकी प्राथमिकताएं',
       contact: 'ग्राहक सहायता',
       language: 'भाषा',
-      copyright: '© 2026 shopifyy. सर्वाधिकार सुरक्षित। दृश्य उत्कृष्टता के लिए निर्मित।'
+      copyright: '© 2026 nexacart. सर्वाधिकार सुरक्षित। दृश्य उत्कृष्टता के लिए निर्मित।'
     },
     auth: {
       loginTitle: 'स्वागत है',
@@ -217,7 +217,7 @@ const translations = {
     }
   },
   fr: {
-    appName: 'shopifyy',
+    appName: 'nexacart',
     searchPlaceholder: 'Rechercher des produits, des marques et des catégories...',
     selectLocation: 'Livrer à',
     defaultLocation: 'Choisir l\'emplacement',
@@ -263,7 +263,7 @@ const translations = {
       cookies: 'Préférences de cookies',
       contact: 'Support technique',
       language: 'Langue',
-      copyright: '© 2026 shopifyy. Tous droits réservés. Conçu pour l\'excellence visuelle.'
+      copyright: '© 2026 nexacart. Tous droits réservés. Conçu pour l\'excellence visuelle.'
     },
     auth: {
       loginTitle: 'De retour parmi nous',

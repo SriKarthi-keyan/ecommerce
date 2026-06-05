@@ -138,14 +138,14 @@ export default function Footer() {
               </h3>
               
               <div style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', display: 'flex', flexDirection: 'column', gap: '1rem', lineHeight: '1.6' }}>
-                <p><strong>1. Welcome to shopifyy</strong></p>
+                <p><strong>1. Welcome to nexacart</strong></p>
                 <p>By accessing our frontend-only application, you agree to comply with and be bound by these terms. This is a mockup designed for visual evaluation. All data, accounts, and checkout options are simulated.</p>
                 
                 <p><strong>2. User Agreement & Privacy</strong></p>
                 <p>We respect your privacy. No personal registration data is stored on remote servers; all actions occur locally in the user's active session. Simulated logins are destroyed upon page reload.</p>
                 
                 <p><strong>3. Accent Red Theme & Layout Licensing</strong></p>
-                <p>The code layout, red-accent highlight styles, custom scrollbars, and animations are properties of shopifyy visual design guidelines. Reproduction for real-world commerce is permitted under the MIT License.</p>
+                <p>The code layout, red-accent highlight styles, custom scrollbars, and animations are properties of nexacart visual design guidelines. Reproduction for real-world commerce is permitted under the MIT License.</p>
                 
                 <p><strong>4. Disclaimer of Liability</strong></p>
                 <p>All items displayed (e.g. Wireless headphones, leather jackets, etc.) are mockups utilizing royalty-free high-fidelity photography. Prices are illustrative. No actual transactions or financial information will ever be processed.</p>

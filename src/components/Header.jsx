@@ -10,7 +10,9 @@ export default function Header({
   cartCount,
   user,
   onLogout,
-  onOpenAuthModal
+  onOpenAuthModal,
+  onCartClick,
+  onProfileClick
 }) {
   const { t } = useLanguage();
   const [showLocationDropdown, setShowLocationDropdown] = useState(false);
@@ -148,16 +150,15 @@ export default function Header({
 
         {/* Auth / Cart Buttons */}
         <div className="header-actions">
-          <button className="cart-icon-btn" aria-label="Cart">
+          <button className="cart-icon-btn" onClick={onCartClick} aria-label="Cart">
             <ShoppingCart size={22} />
             {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
           </button>
 
           {user ? (
-            <div className="user-profile-btn" onClick={onLogout}>
+            <div className="user-profile-btn" onClick={onProfileClick} style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
               <User size={16} />
               <span>{user.name}</span>
-              <LogOut size={14} style={{ marginLeft: '4px', color: 'var(--accent-red)' }} />
             </div>
           ) : (
             <>
